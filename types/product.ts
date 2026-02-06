@@ -12,12 +12,13 @@ export type ProductType = {
         isFeatured: boolean;
         price: number;
 
-        images: {
+        images?: {
             id: number;
             documentId: string;
             name: string;
             url: string;
-            };
+            }[] | null;
+
 
         brand: {
             id: number;
