@@ -1,45 +1,81 @@
 "use client"
 import { ResponseType } from "@/types/response";
-
 import { useGetScent } from "@/api/getProducts";
-import Link from "next/link";
 import { Scent } from "@/types/brand";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
+import SkeletonSchema from "./skeletonSchema";
+import { Card, CardContent } from "./ui/card";
+import { useRouter } from "next/navigation";
 
 const ChooseScent = () => {
     const {result, loading} : ResponseType = useGetScent()
+    console.log (result)
+    const router = useRouter();
 
     return ( 
-        <div className=" max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
-            <h3 className="px-6 pb-4 text-3xl sm:pb-8"> Elige tu marca favorita</h3>
+        
+        <div className=" max-w-full py-4 px-4 mx-auto mt-10">
 
-            <div className=" grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {!loading && result != undefined && 
-                     result.map((scent: Scent) => (
-                        
-                        <Link
-                        key={scent.id}
-                        href={`/brands/${scent.slug}`}
-                        className="relative max-w-xs mx-auto overflow-hidden bg-no-repeat bg-cover rounded-lg"
+            <Carousel className="flex justify-center">
 
-                        >
-                            <img 
-                                src={
-                                    scent.scentImage?.url
-                                        ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${scent.scentImage.url}`
-                                        : "/placeholder.png"
-                                    }
-                                alt={scent.scentName} 
-                                className=" max-w-[270px] transition duration-300 ease-in-out round-lg hover:scale-110"
-                            />
+                <CarouselContent className="">
+
+                     {loading && (
+                        <SkeletonSchema grid={4}/>
+
+                    )}
+
+                    {result != null && ( 
+                     result.map((scent: Scent) => {
+
+                         const {id, scentName, scentImage} = scent;
+
+                         return (
                             
-                        </Link>
-                    )
-                )}
+                            <CarouselItem 
+                                key={id} 
+                                className="  basis-[320px] sm:basis-[360px] md:basis-[400px] lg:basis-[440px] " >
 
-            </div>
+                                    <div className="">
+
+                                        <Card className="p-0 border-none shadow-none">
+
+                                            <CardContent className="relative p-0 ">
+
+                                                <div className="relative w-full h-[90px] sm:h-[130px] md:h-[170px] lg:h-[210px] ">
+                                                        <img
+                                                            src={
+                                                                scentImage.url
+                                                                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${scentImage.url}`
+                                                                : "/placeholder.png"
+                                                            }
+                                                            alt={scentName}
+                                                            className="absolute border rounded inset-0 w-full h-full object-cover"
+                                                        />
+                                                          <h3 className=" px-8 uppercase  absolute w-full text-2xl text-white bottom-5 backdrop-blur-lg "> 
+                                                                {scentName}
+                                                            </h3>
+
+                                                </div>
+
+                                            </CardContent>
+            
+                                        </Card>
+
+                                    </div>
+
+                            </CarouselItem>
+                         )
+                     }
+                    ))}
+                    
+                </CarouselContent>
+                <CarouselPrevious/>
+                <CarouselNext className=""/>
+            </Carousel>
 
         </div>
      );
-}
+    }
  
 export default ChooseScent;
