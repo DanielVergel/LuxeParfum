@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
-export function useGetCategories() {
+export function useGetScent() {
 
-    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/brands?populate=*`
+    const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/scents?populate=*`
 
     const [result, setResult] = useState(null)
     const [loading, setLoading] = useState(true)

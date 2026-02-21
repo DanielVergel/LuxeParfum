@@ -1,12 +1,12 @@
 "use client"
 import { ResponseType } from "@/types/response";
 
-import { useGetCategories } from "@/api/getProducts";
+import { useGetScent } from "@/api/getProducts";
 import Link from "next/link";
-import { Brand } from "@/types/brand";
+import { Scent } from "@/types/brand";
 
-const ChooseCategory = () => {
-    const {result, loading} : ResponseType = useGetCategories()
+const ChooseScent = () => {
+    const {result, loading} : ResponseType = useGetScent()
 
     return ( 
         <div className=" max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
@@ -14,20 +14,21 @@ const ChooseCategory = () => {
 
             <div className=" grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {!loading && result != undefined && 
-                     result.map((brand: Brand) => (
+                     result.map((scent: Scent) => (
+                        
                         <Link
-                        key={brand.id}
-                        href={`/brands/${brand.slug}`}
+                        key={scent.id}
+                        href={`/brands/${scent.slug}`}
                         className="relative max-w-xs mx-auto overflow-hidden bg-no-repeat bg-cover rounded-lg"
 
                         >
                             <img 
                                 src={
-                                    brand.brandImage?.url
-                                        ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${brand.brandImage.url}`
+                                    scent.scentImage?.url
+                                        ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${scent.scentImage.url}`
                                         : "/placeholder.png"
                                     }
-                                alt={brand.brandName} 
+                                alt={scent.scentName} 
                                 className=" max-w-[270px] transition duration-300 ease-in-out round-lg hover:scale-110"
                             />
                             
@@ -41,4 +42,4 @@ const ChooseCategory = () => {
      );
 }
  
-export default ChooseCategory;
+export default ChooseScent;
