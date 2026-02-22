@@ -16,6 +16,13 @@ const FeaturedProducts = () => {
     const { result, loading} : ResponseType = useGetFeaturesProducts()
     const router = useRouter();
 
+    const formatCOP = (value: number) =>
+        new Intl.NumberFormat("es-CO", {
+            style: "currency",
+            currency: "COP",
+            minimumFractionDigits: 0,
+        }).format(value);
+
     return ( 
         <div className=" py-4 mx-auto sm:py-16 sm:px-24 -mt-4">
             
@@ -81,14 +88,6 @@ const FeaturedProducts = () => {
 
                                             <div className="flex flex-col px-8">
 
-                                                {/* <div className="flex items-center justify-between font-extralight gap-3">
-
-                                                    <p className=" px-4 py-1 text-white bg-black rounded-full dark:bg-white dark:text-black w-fit"> 
-                                                        {scent}
-                                                    </p>
-
-                                                </div> */}
-
                                                 <h3 className="text-lg uppercase truncate w-full  ">
                                                     {productName}
                                                     
@@ -98,15 +97,15 @@ const FeaturedProducts = () => {
                                                      {discountPrice ? (
                                                         <>
                                                             <p className="text-gray-400 line-through ">
-                                                                ${price}
+                                                                {formatCOP(price)}
                                                             </p>
                                                          
                                                                 <p className=""> Desde </p>
-                                                                <p className="text-red-600"> ${discountPrice} </p>
+                                                                <p className="text-red-600"> {formatCOP(discountPrice)} </p>
                                                           
                                                         </>
                                                     ) : (
-                                                        <p>${price}</p>
+                                                        <p>{formatCOP(price)}</p>
                                                     )}
                                                 </div>
 
