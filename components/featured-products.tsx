@@ -23,7 +23,7 @@ const FeaturedProducts = () => {
             <Carousel className=" flex justify-center ">
                 <CarouselContent className="-ml-2 md:-ml-4">
                     {loading && (
-                        <SkeletonSchema grid={3}/>
+                        <SkeletonSchema grid={4} />
 
                     )}
                     

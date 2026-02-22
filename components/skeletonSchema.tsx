@@ -10,12 +10,14 @@ const SkeletonSchema = (props: SkeletonSchemaProps ) => {
 
     return ( 
         Array.from({ length:grid }).map((_, index) => (
-            <div key={index} className="flex flex-col gap-8 mx-auto space-y-3">
-                <Skeleton className=" h-[125px] w-[250px] rounder-xl"/>
+            <div key={index} className="flex flex-col px-10 gap-8 mx-auto space-y-3">
+                <Skeleton className=" h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px]
 
-                <div className=" space-y-2">
-                    <Skeleton className="h-4 w-[250px] "/>
-                    <Skeleton className="h-4 w-[250px] "/>
+                w-[350px] rounder-xl"/>
+
+                <div className=" space-y-2 ">
+                    <Skeleton className="h-4 w-[350px] "/>
+                    <Skeleton className="h-4 w-[350px] "/>
                    
                 </div>
             </div>
