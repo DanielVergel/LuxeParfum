@@ -24,7 +24,7 @@ const FeaturedProducts = () => {
         }).format(value);
 
     return ( 
-        <div className=" py-4 mx-auto sm:py-16 sm:px-24 -mt-4">
+        <div className=" py-4 mx-auto sm:py-16 sm:px-24 ">
             
             <h3 className="px-6 text-3xl sm:pb-8">Productos destacados</h3>
             <Carousel className=" flex justify-center ">
@@ -42,7 +42,7 @@ const FeaturedProducts = () => {
                            const imageUrl = images?.[0]?.url;
 
                            return (
-                            <CarouselItem key={id} className=" basis-[280px] sm:basis-[320px] md:basis-[360px] lg:basis-[400px]">
+                            <CarouselItem key={id} className=" basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
 
                                 <div className="p-1">
 
@@ -100,8 +100,8 @@ const FeaturedProducts = () => {
                                                                 {formatCOP(price)}
                                                             </p>
                                                          
-                                                                <p className=""> Desde </p>
-                                                                <p className="text-red-600"> {formatCOP(discountPrice)} </p>
+                                                           
+                                                            <p className="text-red-600"> {formatCOP(discountPrice)} </p>
                                                           
                                                         </>
                                                     ) : (

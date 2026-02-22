@@ -31,19 +31,20 @@ const Navbar = () => {
 
                     <ShoppingCart 
                     strokeWidth="1" 
-                    className="cursor-pointer" 
+                    className="cursor-pointer hidden xl:block" 
                     onClick={() => router.push("/cart")}/>
 
                     <Heart 
                     strokeWidth="1" 
-                    className="cursor-pointer" 
+                    className="cursor-pointer hidden xl:block" 
                     onClick={() => router.push("/loved-products")}/>
 
                     <User 
                     strokeWidth="1" 
                     className="cursor-pointer" />
 
-                    <ToggleTheme
+                    <ToggleTheme 
+                    className=" hidden xl:flex"
                     />
             </div>
 
