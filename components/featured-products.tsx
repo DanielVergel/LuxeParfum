@@ -17,9 +17,10 @@ const FeaturedProducts = () => {
     const router = useRouter();
 
     return ( 
-        <div className=" max-w-6xl py-4 mx-auto sm:py-16 sm:px-24">
+        <div className=" py-4 mx-auto sm:py-16 sm:px-24 -mt-4">
+            
             <h3 className="px-6 text-3xl sm:pb-8">Productos destacados</h3>
-            <Carousel>
+            <Carousel className=" flex justify-center ">
                 <CarouselContent className="-ml-2 md:-ml-4">
                     {loading && (
                         <SkeletonSchema grid={3}/>
@@ -29,17 +30,24 @@ const FeaturedProducts = () => {
                     {result != null && (
                         result.map((product: ProductType ) => {
 
-                           const {id, productName, images, slug, scent} = product;
+                           const {id, productName, images, slug, scent, price, discountPrice} = product;
                        
                            const imageUrl = images?.[0]?.url;
 
                            return (
-                            <CarouselItem key={id} className="md:basis-1/2 lg:basis-1/3 group">
-                                <div className="p-1">
-                                    <Card className="py-4 border border-gray-200 shadow-none">
-                                        <CardContent className="relative flex items-center justify-center px-6 py-2">
+                            <CarouselItem key={id} className=" basis-[280px] sm:basis-[320px] md:basis-[360px] lg:basis-[400px]">
 
-                                            <div className="relative w-full aspect-square">
+                                <div className="p-1">
+
+                                    <Card className=" group py-4 border-none rounded-md shadow-none bg-neutral-50">
+                                        
+                                        <CardContent className="relative flex items-center justify-center px-6 py-2">
+                                            {discountPrice && (
+                                                <span className="absolute top-1 left-3 bg-black text-white text-xs font-bold px-3 py-1 rounded-md shadow-md z-10">
+                                                    OFERTA
+                                                </span>
+                                                )}
+                                            <div className="relative w-full aspect-square uppercase">
                                                     <img
                                                     src={
                                                         imageUrl
@@ -47,11 +55,12 @@ const FeaturedProducts = () => {
                                                         : "/placeholder.png"
                                                     }
                                                     alt={productName}
-                                                    className="absolute inset-0 w-full h-full object-cover"
+                                                    className="absolute inset-0 w-full h-full object-cover  "
                                                     />
                                                 </div>
 
                                                 <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
+
                                                         <div className="flex justify-center gap-x-6">
                                                             <IconButton 
                                                                 onClick={() => router.push(`product/${slug}`)} 
@@ -70,19 +79,47 @@ const FeaturedProducts = () => {
                                                 
                                         </CardContent>
 
-                                            <div className="flex justify-between gap-4 px-8">
+                                            <div className="flex flex-col px-8">
 
-                                                <h3 className="text-lg font-bold  line-clamp-2 min-h-[4rem]">
+                                                {/* <div className="flex items-center justify-between font-extralight gap-3">
+
+                                                    <p className=" px-4 py-1 text-white bg-black rounded-full dark:bg-white dark:text-black w-fit"> 
+                                                        {scent}
+                                                    </p>
+
+                                                </div> */}
+
+                                                <h3 className="text-lg uppercase truncate w-full  ">
                                                     {productName}
+                                                    
                                                 </h3>
 
-                                                <div className="flex items-center justify-between font-extralight gap-3">
+                                                <div className=" flex  font-bold gap-2">
+                                                     {discountPrice ? (
+                                                        <>
+                                                            <p className="text-gray-400 line-through ">
+                                                                ${price}
+                                                            </p>
+                                                         
+                                                                <p className=""> Desde </p>
+                                                                <p className="text-red-600"> ${discountPrice} </p>
+                                                          
+                                                        </>
+                                                    ) : (
+                                                        <p>${price}</p>
+                                                    )}
+                                                </div>
+
+                                                 <div className="flex items-center justify-end font-extralight gap-3">
 
                                                     <p className=" px-4 py-1 text-white bg-black rounded-full dark:bg-white dark:text-black w-fit"> 
                                                         {scent}
                                                     </p>
 
                                                 </div>
+
+
+                                                
                                             </div>
                                     </Card>
 

@@ -3,7 +3,7 @@ import { buttonVariants } from "./ui/button";
 
 const BannerDiscount = () => {
     return ( 
-        <div className="p-5 sm:p-20 text-center -mt-10">
+        <div className="p-5 sm:p-20 text-center -mt-20 -mb-10">
 
             <h2 className="uppercase font-black text-2xl text-primary"> Consigue hasta un -25% </h2>
             <h3 className="mt-3 font-semibold"> 20% al comprar dos permufes o 10% en tu primera compra </h3>

@@ -11,6 +11,7 @@ export type ProductType = {
         active: boolean;
         isFeatured: boolean;
         price: number;
+        discountPrice: number;
 
         images?: {
             id: number;
