@@ -6,7 +6,7 @@ const BannerProduct = () => {
 
         <div className="mt-4 text-center">
            
-            <div className="h-[350px] bg-cover lg:h-[600px] bg-[url('/Banner-Perfumes.jpg')] bg-center mt-5 "/> 
+            <div className="w-full h-[350px] bg-cover lg:h-[600px] bg-[url('/Banner-Perfumes.jpg')] bg-center mt-5 "/> 
             
             <div></div>
             <p className="mt-14 "> Las fragancias mas famosas y usadas</p>

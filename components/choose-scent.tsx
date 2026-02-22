@@ -3,9 +3,9 @@ import { ResponseType } from "@/types/response";
 import { useGetScent } from "@/api/getProducts";
 import { Scent } from "@/types/brand";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
-import SkeletonSchema from "./skeletonSchema";
 import { Card, CardContent } from "./ui/card";
 import { useRouter } from "next/navigation";
+import SkeletonScent from "./skeletonScent";
 
 const ChooseScent = () => {
     const {result, loading} : ResponseType = useGetScent()
@@ -16,12 +16,12 @@ const ChooseScent = () => {
         
         <div className=" max-w-full py-4 px-4 mx-auto mt-10">
 
-            <Carousel className="flex justify-center">
+            <Carousel className="flex justify-center relative">
 
                 <CarouselContent className="">
 
                      {loading && (
-                        <SkeletonSchema grid={4}/>
+                        <SkeletonScent grid={5}/>
 
                     )}
 
@@ -70,8 +70,8 @@ const ChooseScent = () => {
                     ))}
                     
                 </CarouselContent>
-                <CarouselPrevious/>
-                <CarouselNext className=""/>
+                <CarouselPrevious className="left-2"/>
+                <CarouselNext className=" right-2"/>
             </Carousel>
 
         </div>

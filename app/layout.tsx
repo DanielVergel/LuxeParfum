@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${dmSans.variable} ${playFair.variable}`}>
+      <body className={`${dmSans.variable}  ${playFair.variable}`} >
 
         <ThemeProvider
             attribute="class"
