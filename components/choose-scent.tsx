@@ -9,7 +9,6 @@ import SkeletonScent from "./skeletonScent";
 
 const ChooseScent = () => {
     const {result, loading} : ResponseType = useGetScent()
-    console.log (result)
     const router = useRouter();
 
     return ( 
@@ -29,7 +28,7 @@ const ChooseScent = () => {
                      result.map((scent: Scent) => {
 
                          const {id, scentName, scentImage} = scent;
-
+    
                          return (
                             
                             <CarouselItem 
@@ -38,11 +37,11 @@ const ChooseScent = () => {
 
                                     <div className="">
 
-                                        <Card className="p-0 border-none shadow-none">
+                                        <Card className="p-0 border-none shadow-none group cursor-pointer">
 
                                             <CardContent className="relative p-0 ">
 
-                                                <div className="relative w-full h-[90px] sm:h-[130px] md:h-[170px] lg:h-[210px] ">
+                                                <div className="relative w-full h-[90px] sm:h-[130px] md:h-[170px] lg:h-[210px] overflow-hidden rounded ">
                                                         <img
                                                             src={
                                                                 scentImage.url
@@ -50,7 +49,7 @@ const ChooseScent = () => {
                                                                 : "/placeholder.png"
                                                             }
                                                             alt={scentName}
-                                                            className="absolute border rounded inset-0 w-full h-full object-cover"
+                                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
                                                         />
                                                           <h3 className=" px-8 uppercase  absolute w-full text-2xl text-white bottom-5 backdrop-blur-lg "> 
                                                                 {scentName}

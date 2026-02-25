@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 const FeaturedProducts = () => {
     const { result, loading} : ResponseType = useGetFeaturesProducts()
     const router = useRouter();
+    
 
     const formatCOP = (value: number) =>
         new Intl.NumberFormat("es-CO", {
@@ -41,12 +42,20 @@ const FeaturedProducts = () => {
                        
                            const imageUrl = images?.[0]?.url;
 
+                           const mainImage = images?.[0]?.url
+                                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${images[0].url}`
+                                : "/placeholder.png";
+
+                                const secondImage = product.secondaryImage?.url
+                                ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${product.secondaryImage.url}`
+                                : null;
+
                            return (
                             <CarouselItem key={id} className=" basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
 
                                 <div className="p-1">
 
-                                    <Card className=" group py-4 border-none rounded-md shadow-none bg-neutral-50">
+                                    <Card className=" group py-4 border-none rounded-md shadow-none dark:bg-neutral-800 bg-neutral-50">
                                         
                                         <CardContent className="relative flex items-center justify-center px-6 py-2">
                                             {discountPrice && (
@@ -54,16 +63,25 @@ const FeaturedProducts = () => {
                                                     OFERTA
                                                 </span>
                                                 )}
-                                            <div className="relative w-full aspect-square uppercase">
+
+                                                <div className="relative w-full aspect-square overflow-hidden">
+
                                                     <img
-                                                    src={
-                                                        imageUrl
-                                                        ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${imageUrl}`
-                                                        : "/placeholder.png"
-                                                    }
-                                                    alt={productName}
-                                                    className="absolute inset-0 w-full h-full object-cover  "
+                                                        src={mainImage}
+                                                        alt={productName}
+                                                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
+                                                        secondImage ? "group-hover:opacity-0" : ""
+                                                        }`}
                                                     />
+
+                                                    {secondImage && (
+                                                        <img
+                                                        src={secondImage}
+                                                        alt={`${productName} secondary`}
+                                                        className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+                                                        />
+                                                    )}
+
                                                 </div>
 
                                                 <div className="absolute w-full px-6 transition duration-200 opacity-0 group-hover:opacity-100 bottom-5">
@@ -111,7 +129,7 @@ const FeaturedProducts = () => {
 
                                                  <div className="flex items-center justify-end font-extralight gap-3">
 
-                                                    <p className=" px-4 py-1 text-white bg-black rounded-full dark:bg-white dark:text-black w-fit"> 
+                                                    <p className=" px-4 py-1 text-white bg-neutral-500 dark:bg-black rounded-full  dark:text-white w-fit"> 
                                                         {scent}
                                                     </p>
 

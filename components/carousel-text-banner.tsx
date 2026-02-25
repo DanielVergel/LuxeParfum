@@ -41,7 +41,7 @@ const CarouselTextBanner = () => {
 
     return ( 
 
-    <div className="bg-gray-200 dark:bg-primary ">
+    <div className="bg-gray-200 dark:bg-neutral-800  ">
       <Carousel 
         className=" w-full max-w-4xl mx-auto"
         plugins={[
@@ -61,11 +61,11 @@ const CarouselTextBanner = () => {
 
                 <div className="-mt-3 -mb-3">
                     <Card className="shadow-none border-none bg-transparent">
-                      <CardContent className="flex flex-col justify-center items-center ">
-                          <p className=" sm:text-lg text-wrap dark:text-secondary">
+                      <CardContent className="flex flex-col justify-center items-center  dark:text-white  ">
+                          <p className=" sm:text-lg text-wrap ">
                             {title}
                           </p>
-                          <p className="text-xs sm:text-sm text-wrap dark:text-secondary">
+                          <p className="text-xs sm:text-sm text-wrap ">
                             {description}
                           </p>
                       </CardContent>

@@ -19,6 +19,10 @@ export type ProductType = {
             name: string;
             url: string;
             }[] | null;
+        
+            secondaryImage: {
+                url: string;
+            }
 
 
         brand: {
