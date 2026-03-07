@@ -1,6 +1,6 @@
 "use client"
 import { ResponseType } from "@/types/response";
-import { useGetScent } from "@/api/getProducts";
+import { useGetScent } from "@/api/getScents";
 import { Scent } from "@/types/brand";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import { Card, CardContent } from "./ui/card";
@@ -27,12 +27,13 @@ const ChooseScent = () => {
                     {result != null && ( 
                      result.map((scent: Scent) => {
 
-                         const {id, scentName, scentImage} = scent;
+                         const {id, scentName, scentImage, slug} = scent;
     
                          return (
                             
                             <CarouselItem 
                                 key={id} 
+                                onClick={() => router.push(`/shop?scent=${slug}`)}
                                 className="  basis-[320px] sm:basis-[360px] md:basis-[400px] lg:basis-[440px] " >
 
                                     <div className="">

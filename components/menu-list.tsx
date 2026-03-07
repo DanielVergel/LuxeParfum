@@ -12,6 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { CircleAlertIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -51,7 +52,12 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
+
+
 const MenuList = () => {
+
+  const router = useRouter()
+  
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -61,7 +67,8 @@ const MenuList = () => {
           <NavigationMenuTrigger>
 
              <NavigationMenuLink asChild>
-                <Link href="/hombre">
+                <Link 
+                href="/shop?gender=male">
                 <p className=" font-bold ">HOMBRE</p>
                 </Link>
             </NavigationMenuLink>
@@ -85,7 +92,8 @@ const MenuList = () => {
 
           <NavigationMenuTrigger>
             <NavigationMenuLink asChild>
-                <Link href="/female">
+                <Link 
+                href="/shop?gender=female">
                 <p className=" font-bold ">MUJER</p>
                 </Link>
             </NavigationMenuLink>

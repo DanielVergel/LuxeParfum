@@ -1,6 +1,5 @@
 "use client"
 
-import { useGetFeaturesProducts } from "@/api/useGetFeaturedProducts";
 import { ResponseType } from "@/types/response";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import SkeletonSchema from "./skeletonSchema";
@@ -9,11 +8,11 @@ import { Card, CardContent } from "./ui/card";
 import { Expand, ShoppingCart } from "lucide-react";
 import IconButton from "./icon-button";
 import { useRouter } from "next/navigation";
-
+import { useGetProducts } from "@/api/useGetProducts";
 
 
 const FeaturedProducts = () => {
-    const { result, loading} : ResponseType = useGetFeaturesProducts()
+    const { result, loading, error} : ResponseType = useGetProducts({isFeatured: true})
     const router = useRouter();
     
 
@@ -29,7 +28,7 @@ const FeaturedProducts = () => {
             
             <h3 className="px-6 text-3xl sm:pb-8">Productos destacados</h3>
             <Carousel className=" flex justify-center ">
-                <CarouselContent className="-ml-2 md:-ml-4">
+                <CarouselContent className="-ml-2  md:-ml-4">
                     {loading && (
                         <SkeletonSchema grid={4} />
 
@@ -130,7 +129,7 @@ const FeaturedProducts = () => {
                                                  <div className="flex items-center justify-end font-extralight gap-3">
 
                                                     <p className=" px-4 py-1 text-white bg-neutral-500 dark:bg-black rounded-full  dark:text-white w-fit"> 
-                                                        {scent}
+                                                        {scent.scentName}
                                                     </p>
 
                                                 </div>

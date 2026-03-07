@@ -4,7 +4,7 @@ export type ProductType = {
         productName: string;
         authenticity: "prepared" | "original";
         volume_ml: number;
-        scent: string;
+       
         gender: "male" | "female" | "unisex";
         slug: string;
         description: string;
@@ -12,6 +12,10 @@ export type ProductType = {
         isFeatured: boolean;
         price: number;
         discountPrice: number;
+
+         scent: {
+            scentName: string;
+         }
 
         images?: {
             id: number;
