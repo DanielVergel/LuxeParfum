@@ -27,8 +27,8 @@ export default function ShopPage() {
   return (
     <div className="flex gap-8 px-4">
 
-    <div className="w-64 shrink-0 rounded-md bg-neutral-100">
-      <div className="px-2 mt-2"><CheckboxGroup /></div>
+    <div className="w-56 shrink-0 rounded-md bg-neutral-100">
+      <div className="px-2 mt-2 mb-2"><CheckboxGroup /></div>
     </div>
 
     <div className="flex-1">

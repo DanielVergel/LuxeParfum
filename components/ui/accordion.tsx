@@ -35,13 +35,16 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "flex items-center py-3 justify-between text-left transition-all outline-none hover:no-underline [&[data-state=open]>svg]:rotate-180 ",
+          "flex w-full items-center justify-between py-3 text-left transition-all outline-none hover:no-underline [&[data-state=open]>svg]:rotate-180",
           className
         )}
         {...props}
       >
-        {children}
-        <ChevronDownIcon className="pointer-events-none size-4 shrink-0 translate-y-0.5 ml-20 text-muted-foreground transition-transform duration-200" />
+        <span className="font-semibold ml-2 text-neutral-700">
+          {children}
+        </span>
+
+        <ChevronDownIcon className="pointer-events-none mr-4 size-4 shrink-0 text-gray-700 transition-transform duration-200" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )

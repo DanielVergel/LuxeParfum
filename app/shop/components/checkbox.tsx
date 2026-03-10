@@ -38,12 +38,11 @@ if (loading) return <SkeletonCheckBox/>
           defaultValue={["aromas", "marca"]}
           className="">
 
-            <AccordionItem value="aromas" className="">
+            <AccordionItem value="aromas" 
+            className="">
 
-              <AccordionTrigger className=" w-fit font-sans hover:no-underline !justify-start gap-2 items-center [&>svg]:translate-y-0">
-                <FieldDescription className="font-normal text-sm">
-                  Aromas
-                </FieldDescription>
+              <AccordionTrigger className=" font-sans ">
+                <span className=" font-semibold ml-2 text-neutral-700">Aromas</span>
               </AccordionTrigger>
 
               <AccordionContent>
@@ -81,10 +80,8 @@ if (loading) return <SkeletonCheckBox/>
 
             <AccordionItem value="marca">
 
-              <AccordionTrigger className="font-sans hover:no-underline !justify-start gap-2 items-center [&>svg]:translate-y-0">
-                <FieldDescription className="font-normal text-sm">
-                  Marcas
-                </FieldDescription>
+              <AccordionTrigger className="font-sans ">
+                 <span className=" font-semibold ml-2 text-neutral-700">Marcas</span>
               </AccordionTrigger>
 
                 <AccordionContent>
@@ -113,6 +110,60 @@ if (loading) return <SkeletonCheckBox/>
                     </Field>
 
                   ))}
+
+                </FieldGroup>
+
+              </AccordionContent>
+
+            </AccordionItem>
+
+             <AccordionItem value="tamaño">
+
+              <AccordionTrigger className="font-sans ">
+                 <span className=" font-semibold ml-2 text-neutral-700">Tamaño</span>
+              </AccordionTrigger>
+
+                <AccordionContent>
+
+                <FieldGroup className="gap-3">
+
+                    <Field
+                      key="gbffbg"
+                      orientation="horizontal"
+                    >
+
+                      <Checkbox
+                        id="bgffb"
+                        name="gbfgbg"
+                      />
+
+                      <FieldLabel
+                        htmlFor="frgfgt"
+                        className="font-normal"
+                      >
+                        50ml
+                      </FieldLabel>
+
+                    </Field>
+
+                    <Field
+                      key="gbcbg"
+                      orientation="horizontal"
+                    >
+
+                      <Checkbox
+                        id="bfgb"
+                        name="gbgfbg"
+                      />
+
+                      <FieldLabel
+                        htmlFor="frggft"
+                        className="font-normal"
+                      >
+                        100ml
+                      </FieldLabel>
+
+                    </Field>
 
                 </FieldGroup>
 
