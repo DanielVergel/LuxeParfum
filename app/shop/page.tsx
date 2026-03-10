@@ -16,6 +16,7 @@ export default function ShopPage() {
   const scent = searchParams.get("scent") || undefined
   const type = searchParams.get("type") || undefined
 
+  
   const { result, loading, error } : ResponseType = useGetProducts({
     gender,
     scent,

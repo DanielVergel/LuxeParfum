@@ -4,6 +4,15 @@ export type ProductType = {
         productName: string;
         authenticity: "prepared" | "original";
         volume_ml: number;
+        brand: {
+            brandName: string;
+            slug: string;
+            id: number;
+            brandImage: {
+                url: string;
+                name: string;
+            }
+        }
        
         gender: "male" | "female" | "unisex";
         slug: string;
@@ -27,12 +36,5 @@ export type ProductType = {
             secondaryImage: {
                 url: string;
             }
-
-
-        brand: {
-            id: number;
-            brandName: string;
-            slug: string;
-            };
     
 }

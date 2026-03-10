@@ -30,7 +30,7 @@ if (loading) return <SkeletonCheckBox/>
 
           <FieldLegend className="  flex items-center gap-3" variant="label">
             <ArrowDownWideNarrow/>
-            <h1 className="text-lg">Filtros</h1>
+            <p className="text-lg">Filtros</p>
           </FieldLegend>
 
           <Accordion 

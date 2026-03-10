@@ -5,10 +5,11 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import SkeletonSchema from "./skeletonSchema";
 import { ProductType } from "@/types/product";
 import { Card, CardContent } from "./ui/card";
-import { Expand, ShoppingCart } from "lucide-react";
+import { Expand, Heart, ShoppingCart } from "lucide-react";
 import IconButton from "./icon-button";
 import { useRouter } from "next/navigation";
 import { useGetProducts } from "@/api/useGetProducts";
+import { Button } from "./ui/button";
 
 
 const FeaturedProducts = () => {
@@ -39,7 +40,7 @@ const FeaturedProducts = () => {
                     {result != null && (
                         result.map((product: ProductType ) => {
 
-                           const {id, productName, images, slug, scent, price, discountPrice} = product;
+                           const {id, productName, images, slug, scent, price, discountPrice, brand} = product;
                        
                            const imageUrl = images?.[0]?.url;
 
@@ -52,7 +53,7 @@ const FeaturedProducts = () => {
                                 : null;
 
                            return (
-                            <CarouselItem key={id} className=" basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                            <CarouselItem key={id} className=" basis-1/2 sm:basis-1/2 md:basis-1/2 lg:basis-1/3 ">
 
                                 <div className="p-1">
 
@@ -63,7 +64,10 @@ const FeaturedProducts = () => {
                                                 <span className="absolute top-1 left-3 bg-black text-white text-xs font-bold px-3 py-1 rounded-md shadow-md z-10">
                                                     OFERTA
                                                 </span>
+
                                                 )}
+
+                                                
 
                                                 <div className="relative w-full aspect-square overflow-hidden">
 
@@ -107,6 +111,10 @@ const FeaturedProducts = () => {
 
                                             <div className="flex flex-col px-8">
 
+                                                <p className="uppercase truncate w-full text-xs text-gray-500">
+                                                    {brand.brandName}
+                                                </p>
+
                                                 <h3 className="text-lg uppercase truncate w-full  ">
                                                     {productName}
                                                     
@@ -128,16 +136,8 @@ const FeaturedProducts = () => {
                                                     )}
                                                 </div>
 
-                                                 <div className="flex items-center justify-end font-extralight gap-3">
-
-                                                    <p className=" px-4 py-1 text-white bg-neutral-500 dark:bg-black rounded-full  dark:text-white w-fit"> 
-                                                        {scent.scentName}
-                                                    </p>
-
-                                                </div>
-
-
                                                 
+    
                                             </div>
                                     </Card>
 
