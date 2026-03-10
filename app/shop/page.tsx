@@ -6,40 +6,48 @@ import { ProductType } from "@/types/product"
 import { ResponseType } from "@/types/response"
 import { useSearchParams } from "next/navigation"
 import { CheckboxGroup } from "./components/checkbox"
+import ProductCard from "./components/productCard"
 
 
 export default function ShopPage() {
-
   const searchParams = useSearchParams()
 
   const gender = searchParams.get("gender") || undefined
   const scent = searchParams.get("scent") || undefined
   const type = searchParams.get("type") || undefined
 
-  
   const { result, loading, error } : ResponseType = useGetProducts({
     gender,
     scent,
     type
   })
 
-  if (loading) return <p>...</p>
 
   return (
-    <div className="flex gap-8 px-4">
+    <div className="flex flex-col md:flex-row gap-6 px-4 md:px-8 py-6 items-start">
+      
+      {/* Sidebar de filtros */}
+      <aside className="w-full md:w-60 shrink-0 rounded-md bg-neutral-50 p-4">
+        <CheckboxGroup />
+      </aside>
 
-    <div className="w-56 shrink-0 rounded-md bg-neutral-100">
-      <div className="px-2 mt-2 mb-2"><CheckboxGroup /></div>
+      {/* Grid de productos */}
+      <main className="flex-1">
+        {loading && <p>cargando ...</p> }
+        {error && <p className="text-red-600">Error al cargar productos</p>}
+        {!loading && !error && (!result || result.length === 0) && (
+          <p>No se encontraron productos.</p>
+        )}
+
+        {!loading && result && result.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {result.map((product: ProductType) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
+      </main>
+
     </div>
-
-    <div className="flex-1">
-      {result?.map((product: ProductType) => (
-        <div key={product.id}>
-          {product.productName}
-        </div>
-      ))}
-    </div>
-
-  </div>
-)
+  )
 }

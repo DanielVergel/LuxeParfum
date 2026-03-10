@@ -6,17 +6,19 @@ import {
   FieldLegend,
   FieldSet,
 } from "@/components/ui/field"
+import { ArrowDownWideNarrow } from "lucide-react"
 
 export function SkeletonCheckBox() {
   return (
     <FieldSet>
 
-      <FieldLegend variant="label">
-        <h1>Filtrar por:</h1>
+      <FieldLegend className="  flex items-center gap-3" variant="label">
+            <ArrowDownWideNarrow/>
+            <p className="text-lg">Filtros</p>
       </FieldLegend>
 
       <FieldDescription>
-        Aromas
+        
       </FieldDescription>
 
       <FieldGroup className="-mt-4 gap-3">
@@ -24,11 +26,10 @@ export function SkeletonCheckBox() {
         {Array.from({ length: 9 }).map((_, i) => (
           <Field key={i} orientation="horizontal" className="flex items-center gap-2">
 
-            {/* Checkbox skeleton */}
-            <Skeleton className="h-4 w-4 rounded-sm" />
+       
+            <Skeleton className="h-4 w-4 bg-white rounded-sm" />
 
-            {/* Text skeleton */}
-            <Skeleton className="h-4 w-24" />
+            <Skeleton className="h-4 bg-white w-24" />
 
           </Field>
         ))}

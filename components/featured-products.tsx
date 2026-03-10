@@ -28,8 +28,14 @@ const FeaturedProducts = () => {
 
     return ( 
         <div className=" py-4 mx-auto sm:py-16 sm:px-24 ">
-            
-            <h3 className="px-6 text-3xl sm:pb-8">Productos destacados</h3>
+
+            <div className=" sm:mb-8 mb-4 text-center">
+                 <h3 className="px-6 text-3xl  flex justify-center">  Los Mas Apetecidos por Ellos </h3>
+                    {/* <p className=" flex justify-center text-neutral-600 ">
+                        Conoce nuestro amplio catalogo de perfumes de todos los aromas y marcas
+                    </p> */}
+            </div>
+
             <Carousel className=" flex justify-center ">
                 <CarouselContent className="-ml-2  md:-ml-4">
                     {loading && (
@@ -53,7 +59,7 @@ const FeaturedProducts = () => {
                                 : null;
 
                            return (
-                            <CarouselItem key={id} className=" basis-1/2 sm:basis-1/2 md:basis-1/2 lg:basis-1/3 ">
+                            <CarouselItem key={id} className=" basis-1/2 sm:basis-1/2 md:basis-1/2 lg:basis-1/4 ">
 
                                 <div className="p-1">
 
