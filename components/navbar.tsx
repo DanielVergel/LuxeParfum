@@ -24,6 +24,7 @@ const Navbar = () => {
             </div>
 
              <p className="absolute left-1/2 -translate-x-1/2 text-2xl cursor-pointer " onClick={() => router.push("/")}> 
+               
                 Luxe <span className="font-bold"> Parfum </span>
             </p>
 

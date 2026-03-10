@@ -23,6 +23,8 @@ const FeaturedProducts = () => {
             minimumFractionDigits: 0,
         }).format(value);
 
+        
+
     return ( 
         <div className=" py-4 mx-auto sm:py-16 sm:px-24 ">
             

@@ -1,9 +1,11 @@
 "use client"
 
 import { useGetProducts } from "@/api/useGetProducts"
+import { Checkbox } from "@/components/ui/checkbox"
 import { ProductType } from "@/types/product"
 import { ResponseType } from "@/types/response"
 import { useSearchParams } from "next/navigation"
+import { CheckboxGroup } from "./components/checkbox"
 
 
 export default function ShopPage() {
@@ -20,15 +22,23 @@ export default function ShopPage() {
     type
   })
 
-  if (loading) return <p>Cargando...</p>
+  if (loading) return <p>...</p>
 
   return (
-    <div>
+    <div className="flex gap-8 px-4">
+
+    <div className="w-64 shrink-0 rounded-md bg-neutral-100">
+      <div className="px-2 mt-2"><CheckboxGroup /></div>
+    </div>
+
+    <div className="flex-1">
       {result?.map((product: ProductType) => (
         <div key={product.id}>
           {product.productName}
         </div>
       ))}
     </div>
-  )
+
+  </div>
+)
 }

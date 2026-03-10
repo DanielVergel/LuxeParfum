@@ -1,9 +1,9 @@
-export type Scent = {
-  id: number;
-  scentName: string;
-  slug: string;
-  scentImage: {
-    url: string;
-    name: string;
-  };
+export type Brand = {
+    id: number;
+    brandName: string;
+    slug: string;
+    brandImage: {
+        url: string;
+        name: string;
+    }
 }

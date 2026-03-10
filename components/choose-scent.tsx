@@ -1,7 +1,7 @@
 "use client"
 import { ResponseType } from "@/types/response";
 import { useGetScent } from "@/api/getScents";
-import { Scent } from "@/types/brand";
+import { Scent } from "@/types/scent";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./ui/carousel";
 import { Card, CardContent } from "./ui/card";
 import { useRouter } from "next/navigation";
