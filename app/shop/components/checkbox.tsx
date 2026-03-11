@@ -35,7 +35,7 @@ if (loading) return <SkeletonCheckBox/>
 
           <Accordion 
           type="multiple" 
-          defaultValue={["aromas", "tamaño"]}
+          defaultValue={["aromas", ""]}
           className="">
 
             <AccordionItem value="aromas" 

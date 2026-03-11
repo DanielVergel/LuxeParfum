@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react"
 import { ProductType } from "@/types/product"
 
+export type SortOption =
+  | "priceAsc"
+  | "priceDesc"
+  | "nameAsc"
+  | "nameDesc"
+  | "popularity"
+
 interface Filters {
   gender?: string
   scent?: string
   type?: string
   isFeatured?: boolean
+  sort?: SortOption
 }
 
 export function useGetProducts(filters: Filters) {
@@ -32,7 +40,20 @@ export function useGetProducts(filters: Filters) {
     query.push(`filters[isFeatured][$eq]=true`)
   }
 
+  const sortMap = {
+  priceAsc: "price:asc",
+  priceDesc: "price:desc",
+  nameAsc: "productName:asc",
+  nameDesc: "productName:desc",
+  popularity: "isFeatured:asc"
+  }
+
+  if (filters.sort) {
+    query.push(`sort=${sortMap[filters.sort]}`)
+  }
+
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?populate=*&${query.join("&")}`
+  console.log(url)
 
   useEffect(() => {
 

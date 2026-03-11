@@ -1,25 +1,39 @@
 "use client"
 
-import { useGetProducts } from "@/api/useGetProducts"
+import { SortOption, useGetProducts } from "@/api/useGetProducts"
 import { Checkbox } from "@/components/ui/checkbox"
 import { ProductType } from "@/types/product"
 import { ResponseType } from "@/types/response"
-import { useSearchParams } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { CheckboxGroup } from "./components/checkbox"
 import ProductCard from "./components/productCard"
+import { useState } from "react"
+import ProductSort from "./components/ProductSort"
 
 
 export default function ShopPage() {
+
   const searchParams = useSearchParams()
+  const router = useRouter()
+
+  const handleSortChange = (value: SortOption) => {
+  const params = new URLSearchParams(searchParams.toString())
+
+  params.set("sort", value)
+
+  router.push(`/shop?${params.toString()}`)
+}
 
   const gender = searchParams.get("gender") || undefined
   const scent = searchParams.get("scent") || undefined
   const type = searchParams.get("type") || undefined
+  const sort = searchParams.get("sort") as SortOption | undefined
 
   const { result, loading, error } : ResponseType = useGetProducts({
     gender,
     scent,
-    type
+    type,
+    sort
   })
 
 
@@ -30,6 +44,8 @@ export default function ShopPage() {
       <aside className="w-full md:w-60 shrink-0 rounded-md bg-neutral-50 p-4">
         <CheckboxGroup />
       </aside>
+
+      <ProductSort onSortChange={handleSortChange} />
 
       {/* Grid de productos */}
       <main className="flex-1">
