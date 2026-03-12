@@ -9,11 +9,13 @@ export type SortOption =
   | "popularity"
 
 interface Filters {
-  gender?: string
-  scent?: string
-  type?: string
-  isFeatured?: boolean
-  sort?: SortOption
+  gender?: string;
+  scent?: string;
+  type?: string;
+  isFeatured?: boolean;
+  sort?: SortOption;
+  search?: string;
+  page?: number
 }
 
 export function useGetProducts(filters: Filters) {
@@ -21,6 +23,7 @@ export function useGetProducts(filters: Filters) {
   const [result, setResult] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState("")
+  const [pagination, setPagination] = useState<any>(null)
 
   let query: string[] = []
 
@@ -40,6 +43,15 @@ export function useGetProducts(filters: Filters) {
     query.push(`filters[isFeatured][$eq]=true`)
   }
 
+  if (filters.search) {
+  query.push(`filters[productName][$containsi]=${filters.search}`)
+  }
+
+  if (filters.page) {
+  query.push(`pagination[page]=${filters.page}`)
+  query.push(`pagination[pageSize]=10`)
+  }
+
   const sortMap = {
   priceAsc: "price:asc",
   priceDesc: "price:desc",
@@ -53,7 +65,6 @@ export function useGetProducts(filters: Filters) {
   }
 
   const url = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/products?populate=*&${query.join("&")}`
-  console.log(url)
 
   useEffect(() => {
 
@@ -68,6 +79,7 @@ export function useGetProducts(filters: Filters) {
 
         const json = await res.json()
         setResult(json.data)
+        setPagination(json.meta.pagination)
 
       } catch (err: any) {
         setError(err.message)
@@ -80,5 +92,5 @@ export function useGetProducts(filters: Filters) {
 
   }, [url])
 
-  return { result, loading, error }
+  return { result, loading, error, pagination }
 }

@@ -40,7 +40,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     }).format(value)
 
   return (
-    <Card className="group border-none rounded-sm shadow-none dark:bg-neutral-800 bg-neutral-50">
+    <Card className="group border-none rounded-sm shadow-none dark:bg-neutral-900 bg-neutral-50">
       <CardContent className="relative flex items-center justify-center px-4 py-2">
 
         {/* Badge de oferta */}

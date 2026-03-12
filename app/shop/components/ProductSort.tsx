@@ -15,11 +15,7 @@ type Props = {
 
 export default function ProductSort({ onSortChange }: Props) {
   return (
-    <div className="flex items-center justify-between mb-6">
-
-      <p className="text-sm text-muted-foreground">
-        Ordenar por
-      </p>
+    <div className="flex items-center justify-between ">
 
       <Select 
       onValueChange={(value) => onSortChange(value as SortOption)}>

@@ -42,7 +42,7 @@ if (loading) return <SkeletonCheckBox/>
             className="">
 
               <AccordionTrigger className=" font-sans ">
-                <span className=" font-semibold ml-2 text-neutral-700">Aromas</span>
+                <span className=" font-semibold ml-2 text-neutral-700 dark:text-white">Aromas</span>
               </AccordionTrigger>
 
               <AccordionContent>
@@ -81,7 +81,7 @@ if (loading) return <SkeletonCheckBox/>
             <AccordionItem value="marca">
 
               <AccordionTrigger className="font-sans ">
-                 <span className=" font-semibold ml-2 text-neutral-700">Marcas</span>
+                 <span className=" font-semibold ml-2 text-neutral-700 dark:text-white">Marcas</span>
               </AccordionTrigger>
 
                 <AccordionContent>
@@ -120,7 +120,7 @@ if (loading) return <SkeletonCheckBox/>
              <AccordionItem value="tamaño">
 
               <AccordionTrigger className="font-sans ">
-                 <span className=" font-semibold ml-2 text-neutral-700">Tamaño</span>
+                 <span className=" font-semibold ml-2 text-neutral-700 dark:text-white">Tamaño</span>
               </AccordionTrigger>
 
                 <AccordionContent>

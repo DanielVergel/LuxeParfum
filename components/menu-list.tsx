@@ -75,17 +75,6 @@ const MenuList = () => {
 
           </NavigationMenuTrigger>
 
-          <NavigationMenuContent>
-            <ul className="w-96">
-              <ListItem href="/male/original" title="ORIGINALES">
-                Perfumes Originales
-              </ListItem>
-              <ListItem href="/male/original" title="PREPARADOS">
-                Escencia Preparada
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-
         </NavigationMenuItem>
 
         <NavigationMenuItem className="">
@@ -99,48 +88,6 @@ const MenuList = () => {
             </NavigationMenuLink>
           </NavigationMenuTrigger>
 
-          <NavigationMenuContent>
-            <ul className="w-96">
-              <ListItem href="/male/original" title="ORIGINALES">
-                Perfumes Originales
-              </ListItem>
-              <ListItem href="/male/original" title="PREPARADOS">
-                Escencia Preparada
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-
-        </NavigationMenuItem>
-
-        <NavigationMenuItem className="hidden md:flex">
-
-            <NavigationMenuTrigger>
-                <NavigationMenuLink asChild>
-                    <Link href="/accesorios">
-                     <p className=" font-bold ">ACCESORIOS</p>
-                    </Link>
-                </NavigationMenuLink>
-            </NavigationMenuTrigger>
-
-          <NavigationMenuContent>
-            <ul className="w-96">
-                    <ListItem href="/male/original" title="GORRAS">
-                        Gorras premiun
-                    </ListItem>
-                    <ListItem href="/male/original" title="DECANTS">
-                        Decants para mas comodidad
-                    </ListItem>
-            </ul>
-          </NavigationMenuContent>
-
-        </NavigationMenuItem>
-
-        <NavigationMenuItem className="hidden lg:flex">
-          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-            <Link  href="/docs">
-                <p className=" font-bold text-green-500 ">SALE</p>
-            </Link>
-          </NavigationMenuLink>
         </NavigationMenuItem>
 
       </NavigationMenuList>
