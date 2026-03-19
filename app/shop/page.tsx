@@ -1,15 +1,14 @@
 "use client"
 
-import { SortOption, useGetProducts } from "@/api/useGetProducts"
-import { Checkbox } from "@/components/ui/checkbox"
+import { useGetProducts } from "@/api/useGetProducts"
 import { ProductType } from "@/types/product"
 import { ResponseType } from "@/types/response"
 import { useRouter, useSearchParams } from "next/navigation"
-import { CheckboxGroup } from "./components/checkbox"
-import ProductCard from "./components/productCard"
-import { useState } from "react"
-import ProductSort from "./components/ProductSort"
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination"
+import CheckboxGroup from "./components/checkbox"
+import ProductCard from "./components/productCard"
+import ProductSort from "./components/ProductSort"
+import { SortOption } from "@/lib/buildStrapiQuery"
 
 
 export default function ShopPage() {
@@ -21,7 +20,6 @@ export default function ShopPage() {
   const params = new URLSearchParams(searchParams.toString())
 
   params.set("sort", value)
-
   router.push(`/shop?${params.toString()}`)
 }
 
@@ -41,10 +39,37 @@ export default function ShopPage() {
   const handlePageChange = (newPage: number) => {
   const params = new URLSearchParams(searchParams.toString())
 
-  params.set("page", String(newPage))
+    params.set("page", String(newPage))
+    router.push(`/shop?${params.toString()}`)
+  }
+
+  const handleScentChange = (scent: string) => {
+
+  const params = new URLSearchParams(searchParams.toString())
+
+  const currentScents = params.get("scent")
+
+  let scentsArray = currentScents ? currentScents.split(",") : []
+
+  if (scentsArray.includes(scent)) {
+   
+    scentsArray = scentsArray.filter(s => s !== scent)
+  } else {
+    
+    scentsArray.push(scent)
+  }
+
+  if (scentsArray.length > 0) {
+    params.set("scent", scentsArray.join(","))
+  } else {
+    params.delete("scent")
+  }
+
+  params.set("page", "1")
 
   router.push(`/shop?${params.toString()}`)
 }
+
 
   const gender = searchParams.get("gender") || undefined
   const scent = searchParams.get("scent") || undefined
@@ -67,8 +92,13 @@ export default function ShopPage() {
     <div className="flex flex-col md:flex-row gap-6 px-4 md:px-8 py-6 items-start">
 
   {/* Sidebar de filtros */}
-  <aside className="w-full md:w-60 shrink-0 rounded-md bg-neutral-50 dark:bg-neutral-900 p-4">
-    <CheckboxGroup />
+  <aside>
+    <div className="w-full md:w-60 shrink-0 rounded-md bg-neutral-50 dark:bg-neutral-900 p-4 hidden md:flex">
+      <CheckboxGroup onScentChange={handleScentChange} />
+    </div>
+    <div className="">
+      
+    </div>
   </aside>
 
   <main className="flex-1">
@@ -84,6 +114,8 @@ export default function ShopPage() {
         onChange={(e) => handleSearch(e.target.value)}
         className="w-full sm:max-w-xs border rounded-md px-3 py-2 text-sm "
       />
+
+      {/* Banner Genero */}
 
       {/* Orden */}
       <ProductSort onSortChange={handleSortChange} />

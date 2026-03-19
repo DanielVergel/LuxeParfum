@@ -1,6 +1,6 @@
 "use client"
 
-import { SortOption } from "@/api/useGetProducts"
+
 import {
   Select,
   SelectContent,
@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { SortOption } from "@/lib/buildStrapiQuery"
 
 type Props = {
   onSortChange: (value: SortOption) => void

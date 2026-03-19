@@ -27,9 +27,9 @@ export function SkeletonCheckBox() {
           <Field key={i} orientation="horizontal" className="flex items-center gap-2">
 
        
-            <Skeleton className="h-4 w-4 bg-white rounded-sm" />
+            <Skeleton className="h-4 w-4 bg-white dark:bg-neutral-600 rounded-sm" />
 
-            <Skeleton className="h-4 bg-white w-24" />
+            <Skeleton className="h-4 bg-white  dark:bg-neutral-600 w-24" />
 
           </Field>
         ))}

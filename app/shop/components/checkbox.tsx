@@ -16,11 +16,20 @@ import { ArrowDownWideNarrow } from "lucide-react"
 import { useGetBrand } from "@/api/getBrands"
 import { Brand } from "@/types/brand"
 import { ResponseTypeBrand } from "@/types/responseBrand"
+import { useSearchParams } from "next/navigation"
 
-export function CheckboxGroup() {
+type Props = {
+  onScentChange: (value: string) => void
+}
 
-const {result, loading} : ResponseType = useGetScent()
-const {resultBrand} : ResponseTypeBrand = useGetBrand()
+export default function CheckboxGroup({onScentChange}: Props ) {
+
+  const {result, loading} : ResponseType = useGetScent()
+  const {resultBrand} : ResponseTypeBrand = useGetBrand()
+
+  const searchParams = useSearchParams()
+
+  const activeScents = searchParams.get("scent")?.split(",") || []
 
 if (loading) return <SkeletonCheckBox/>
 
@@ -57,6 +66,8 @@ if (loading) return <SkeletonCheckBox/>
                     >
 
                       <Checkbox
+                      checked={activeScents.includes(scent.slug)}
+                        onCheckedChange={() => onScentChange(scent.slug)}
                         id={scent.slug}
                         name={scent.slug}
                       />
